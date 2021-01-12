@@ -150,7 +150,7 @@ hsprings
 mean(hsprings$temp_C)
 ```
 
-5. Save your hot springs data as a `.csv` file! Do not allow row names. 
+5. Save your hot springs data as a `.csv` file! Do not allow row names. Note: csv means "comma separated values"
 ```{r}
 write.csv(hsprings, "hsprings_data.csv", row.names = FALSE)
 ```
