@@ -36,7 +36,7 @@ mammals <- rename(mammals, genus=Genus, wean_mass="wean mass", max_life="max. li
 ```
 
 ## `filter()`
-Unlike `select()`, `filter()` allows us to extract data that meet specific criteria within a variable. Let's say that we are interested only in the fish that occur in lake "AL". We can use `filter()` to extract these observations.  
+Unlike `select()`, `filter()` allows us to extract data that meet specific criteria within a variable. (Select allows you to extract specific data columns/variables) Let's say that we are interested only in the fish that occur in lake "AL". We can use `filter()` to extract these observations.  
 ```{r}
 filter(fish, lakeid == "AL")
 ```
@@ -72,22 +72,21 @@ filter(fish, near(radii_length_mm, 2, tol = 0.2))
 ## Practice
 1. Filter the `fish` data to include the samples from lake "BO".
 ```{r}
-
+filter(fish, lakeid=="BO")
 ```
 
 2. Filter the data to include all lakes except "AR".
 ```{r}
-
+filter(fish, lakeid != "AR")
 ```
 
 3. Filter the fish data to include all fish with a scalelength within 0.25 of 8.
 ```{r}
-
+filter(fish, between(scalelength, 0.25, 8))
 ```
-
 4. Filter the fish data to include fish with a scalelength between 2 and 4.
 ```{r}
-
+filter(fish, between(scalelength, 2, 4))
 ```
 
 ## Using `filter()` on multiple conditions
@@ -96,16 +95,16 @@ You can also use `filter()` to extract data based on multiple conditions. Below 
 filter(fish, lakeid == "AL" & length > 350)
 ```
 
-Notice that the `|` operator generates a different result.
+Notice that the `|` operator generates a different result. This means 'and/or.'
 ```{r}
 filter(fish, lakeid == "AL" | length > 350)
 ```
 
 Rules:  
-+ `filter(condition1, condition2)` will return rows where both conditions are met.  
-+ `filter(condition1, !condition2)` will return all rows where condition one is true but condition 2 is not.  
-+ `filter(condition1 | condition2)` will return rows where condition 1 and/or condition 2 is met.  
-+ `filter(xor(condition1, condition2)` will return all rows where only one of the conditions is met, and not when both conditions are met.  
++ `filter(condition1, condition2)` will return rows where both conditions are met.  (overlap of the venn diagram)
++ `filter(condition1, !condition2)` will return all rows where condition one is true but condition 2 is not.  (just one circle, minus the overlap)
++ `filter(condition1 | condition2)` will return rows where condition 1 and/or condition 2 is met. (whole venn diagram) 
++ `filter(xor(condition1, condition2)` will return all rows where only one of the conditions is met, and not when both conditions are met.  (venn diagram, minus the shared area)
 
 In this case, we filter out the fish with a length over 400 and a scale length over 11 or a radii length over 8.
 ```{r}
@@ -115,32 +114,38 @@ filter(fish, length > 400, (scalelength > 11 | radii_length_mm > 8))
 ## Practice  
 1. Have a look at the mammals data using the summary functions of your choosing.    
 ```{r}
-
+summary(mammals)
+```
+```{r}
+glimpse(mammals)
 ```
 
 2. What are the names of the variables in the mammals data?  
 ```{r}
-
+names(mammals)
 ```
 
 3.  From the `mammals` data, filter all members of the family Bovidae with a mass greater than 450000.
 ```{r}
-
+filter(mammals, family == "Bovidae", mass > 450000)
 ```
 
 4. Let's say we are only interested in family, genus, species, mass, and gestation. Relimit the mammals data frame to these variables.  
 ```{r}
-
+mammals2 <- select(mammals, family, genus, species, mass, gestation)
+mammals2
 ```
 
 5. Use the output from #4 to focus on the family Bovidae with a mass greater than 450000.
 ```{r}
-
+filter(mammals2, family == "Bovidae", mass > 450000)
 ```
 
 6. From the `mammals` data, build a data frame that compares `mass`, `gestation`, and `newborn` among the primate genera `Lophocebus`, `Erythrocebus`, and `Macaca`. Among these genera, which species has the smallest `newborn` mass?
 ```{r}
-
+mammal_repro <- data_frame(select(mammals, "family", "mass", "newborn", "gestation"))
+mammal_repro2 <- data_frame(filter(mammal_repro, family == "Lophocebus" | family == "Erythrocebus" | family == "Macaca"))
+mammal_repro2
 ```
 
 ```{r}
