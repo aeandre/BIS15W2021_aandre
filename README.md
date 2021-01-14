@@ -6,7 +6,7 @@ Welcome! This repository includes all of the .rmd files and data that I, Allison
 
 [My email](mailto:aeandre@ucdavis.edu)  
 
-(https://github.com/aeandre/BIS15W2021_aandre/blob/main/giphy.gif)
+![giphy](https://user-images.githubusercontent.com/77021751/104538469-c87b1480-55d0-11eb-9a5a-0d3f99c87a4b.gif)
 ## Thank You!
 
 
