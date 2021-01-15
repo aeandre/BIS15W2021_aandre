@@ -2,10 +2,11 @@
 title: "Transforming data 2: `filter()`"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
+    keep_md: yes
   pdf_document:
     toc: yes
 ---
@@ -143,13 +144,13 @@ filter(mammals2, family == "Bovidae", mass > 450000)
 
 6. From the `mammals` data, build a data frame that compares `mass`, `gestation`, and `newborn` among the primate genera `Lophocebus`, `Erythrocebus`, and `Macaca`. Among these genera, which species has the smallest `newborn` mass?
 ```{r}
-mammal_repro <- data_frame(select(mammals, "family", "mass", "newborn", "gestation"))
-mammal_repro2 <- data_frame(filter(mammal_repro, family == "Lophocebus" | family == "Erythrocebus" | family == "Macaca"))
-mammal_repro2
+mammals_repro <- select(mammals, mass, gestation, newborn, genus)
+mammals_repro2 <- filter(mammals_repro, genus == "Lophocebus" | genus == "Erythrocebus" | genus == "Macaca")
 ```
 
-```{r}
 
+```{r}
+filter(mammals_repro2, newborn == min(mammals_repro2$newborn))
 ```
 
 ## Wrap-up  
