@@ -20,7 +20,7 @@ library(tidyverse)
 ```
 
 ## Mammals Sleep
-1. For this assignment, we are going to use built-in data on mammal sleep patterns. From which publication are these data taken from? Since the data are built-in you can use the help function in R.
+> 1. For this assignment, we are going to use built-in data on mammal sleep patterns. From which publication are these data taken from? Since the data are built-in you can use the help function in R.
 They are taken from a publication by V. M. Savage and G. B. West. 
 
 ```r
