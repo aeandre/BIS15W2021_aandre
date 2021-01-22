@@ -3,9 +3,9 @@ title: "Lab 6 Homework"
 author: "Please Add Your Name Here"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -106,37 +106,41 @@ fisheries_tidy %>%
   arrange(desc(catch))
 ```
 
-7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000?
+7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000? Answer: Morocco
 ```{r}
 fisheries_tidy %>% 
-  select(country, year, asfis_species_name, catch) %>% 
-  filter((between(year, 1990, 2000))) %>% 
-  #group_by(country, year) %>% 
-  summarize(sum(catch, between(year, 1990, 2000, na.rm = TRUE))
+  filter((between(year, 1990, 2000)), asfis_species_name == "Sardina pilchardus") %>% 
+  group_by(country) %>% 
+  summarize(tot_catch_1990_to_2000 = sum(catch, between(year, 1990, 2000), na.rm = TRUE)) %>% 
+  arrange(desc(tot_catch_1990_to_2000))
 ```
 
-
+8. Which five countries caught the most cephalopods between 2008-2012? Answer: India, China, Spain, Algeria, and France
 ```{r}
 fisheries_tidy %>% 
-  select(country, asfis_species_name, year, catch) %>%
-  mutate(catch_1990_to_2000 = )
-  #filter((between(year, 1990, 2000)), asfis_species_name == "Sardina pilchardus") %>%
-  arrange(desc(catch))
+  filter(between(year, 2008, 2012), asfis_species_name == "Cephalopoda") %>% 
+  group_by(country) %>% 
+  summarize(sum_ceph_2008_to_2012 = sum(catch, between(year, 2008, 2012), na.rm = TRUE)) %>% 
+  arrange(desc(sum_ceph_2008_to_2012))
 ```
 
-8. Which five countries caught the most cephalopods between 2008-2012?
+9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species) Answer: Theragra chalcograma
 ```{r}
-
-```
-
-9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species)
-```{r}
-
+fisheries_tidy %>% 
+  filter(between(year, 2008, 2012), asfis_species_name != "Osteichthyes") %>% 
+  group_by(asfis_species_name) %>% 
+  summarize(tot_catch_2008_to_2012 = sum(catch, between(year, 2008, 2012))) %>% 
+  arrange(desc(tot_catch_2008_to_2012))
 ```
 
 10. Use the data to do at least one analysis of your choice.
+I want to know which species was caught the most in the United States in 2010. Answer: pink salmon
 ```{r}
-
+fisheries_tidy %>% 
+  filter(year == 2010, country == "United States of America") %>% 
+  select(asfis_species_name, common_name, catch) %>% 
+  group_by(asfis_species_name) %>% 
+  arrange(desc(catch))
 ```
 
 ## Push your final code to GitHub!
