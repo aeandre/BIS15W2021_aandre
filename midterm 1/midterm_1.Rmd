@@ -63,7 +63,8 @@ table(elephants$sex)
 
 **6. (2 points) What is the average age all elephants in the data?**
 ```{r}
-mean(elephants$age)
+elephants %>%
+  summarize(mean_age = mean(age))
 ```
 
 **7. (2 points) How does the average age and height of elephants compare by sex?**
@@ -112,9 +113,17 @@ gabon$land_use <- as_factor(gabon$land_use)
 ```{r}
 gabon %>%
   select(hunt_cat, diversity_bird_species, diversity_mammal_species) %>% 
-  filter(hunt_cat == "High" | hunt_cat == "Moderate") %>%
+  filter(hunt_cat == "High") %>%
   summarize(mean_diversity_birds = mean(diversity_bird_species), mean_diversity_mammals = mean(diversity_mammal_species))
 ```
+
+```{r}
+gabon %>%
+  select(hunt_cat, diversity_bird_species, diversity_mammal_species) %>% 
+  filter(hunt_cat == "Moderate") %>%
+  summarize(mean_diversity_birds = mean(diversity_bird_species), mean_diversity_mammals = mean(diversity_mammal_species))
+```
+
 
 **11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**  
 
@@ -127,6 +136,7 @@ near_village <- gabon %>%
   summarize(across(contains("ra_"), mean))
 near_village
 ```
+
 Average relative abundances of far:
 ```{r}
 far_from_village <- gabon %>% 
@@ -138,10 +148,10 @@ Bonus!
 
 Raw numbers for far and near:
 ```{r}
-gabon %>% 
-  filter(distance<5 | distance > 20) %>% 
-  select(distance, ra_apes, ra_birds, ra_elephant, ra_monkeys, ra_rodent, ra_ungulate) %>% 
-  arrange(desc(distance))
+#gabon %>% 
+  #filter(distance<5 | distance > 20) %>% 
+  #select(distance, ra_apes, ra_birds, ra_elephant, ra_monkeys, ra_rodent, ra_ungulate) %>% 
+ # arrange(desc(distance))
 ```
 
 **12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**
