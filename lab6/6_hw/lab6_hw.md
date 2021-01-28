@@ -1,7 +1,7 @@
 ---
 title: "Lab 6 Homework"
-author: "Please Add Your Name Here"
-date: "2021-01-22"
+author: "Allison Andre"
+date: "2021-01-26"
 output:
   html_document: 
     theme: spacelab
@@ -28,19 +28,19 @@ For this assignment we are going to work with a large data set from the [United 
 Load the data `FAO_1950to2012_111914.csv` as a new object titled `fisheries`.
 
 ```r
-setwd("~/Desktop/BIS15L-W21-DataScienceBiologists/lab6/data")
-fisheries <- readr:: read_csv("FAO_1950to2012_111914.csv")
+#setwd("~/Desktop/BIS15L-W21-DataScienceBiologists/lab6/data")
+fisheries <- readr:: read_csv("data/FAO_1950to2012_111914.csv")
 ```
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_character(),
 ##   `ISSCAAP group#` = col_double(),
 ##   `FAO major fishing area` = col_double()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 1. Do an exploratory analysis of the data (your choice). What are the names of the variables, what are the dimensions, are there any NA's, what are the classes of the variables?  
@@ -315,6 +315,7 @@ fisheries_tidy %>%
 ##     British Virgin Islands   332 8.811719e-04
 ##          Brunei Darussalam   186 4.936686e-04
 ##                   Bulgaria  1596 4.235995e-03
+##           C<f4>te d'Ivoire  1859 4.934032e-03
 ##                 Cabo Verde   462 1.226209e-03
 ##                   Cambodia   238 6.316834e-04
 ##                   Cameroon  1340 3.556537e-03
@@ -333,9 +334,8 @@ fisheries_tidy %>%
 ##                 Costa Rica  1171 3.107989e-03
 ##                    Croatia   947 2.513463e-03
 ##                       Cuba  2981 7.911968e-03
-##                 Cura\xe7ao    18 4.777438e-05
+##                 Cura<e7>ao    18 4.777438e-05
 ##                     Cyprus  1703 4.519987e-03
-##           C\xf4te d'Ivoire  1859 4.934032e-03
 ##                    Denmark  3741 9.929108e-03
 ##                   Djibouti   352 9.342545e-04
 ##                   Dominica   213 5.653301e-04
@@ -437,10 +437,10 @@ fisheries_tidy %>%
 ##                   Portugal 11570 3.070831e-02
 ##                Puerto Rico   918 2.436493e-03
 ##                      Qatar   941 2.497538e-03
+##                 R<e9>union   736 1.953441e-03
 ##                    Romania  1738 4.612882e-03
 ##         Russian Federation  4736 1.256997e-02
-##                 R\xe9union   736 1.953441e-03
-##        Saint Barth\xe9lemy     6 1.592479e-05
+##        Saint Barth<e9>lemy     6 1.592479e-05
 ##               Saint Helena   609 1.616366e-03
 ##      Saint Kitts and Nevis   397 1.053690e-03
 ##                Saint Lucia   558 1.481006e-03
@@ -506,19 +506,19 @@ fisheries_tidy %>%
 
 ```
 ## # A tibble: 376,771 x 6
-##    country isscaap_taxonomic_g… asfis_species_na… asfis_species_num…  year catch
+##    country isscaap_taxonomic_g~ asfis_species_na~ asfis_species_num~  year catch
 ##    <fct>   <chr>                <chr>             <fct>              <dbl> <dbl>
-##  1 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          1995    NA
-##  2 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          1996    53
-##  3 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          1997    20
-##  4 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          1998    31
-##  5 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          1999    30
-##  6 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          2000    30
-##  7 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          2001    16
-##  8 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          2002    79
-##  9 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          2003     1
-## 10 Albania Sharks, rays, chima… Squatinidae       10903XXXXX          2004     4
-## # … with 376,761 more rows
+##  1 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          1995    NA
+##  2 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          1996    53
+##  3 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          1997    20
+##  4 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          1998    31
+##  5 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          1999    30
+##  6 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          2000    30
+##  7 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          2001    16
+##  8 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          2002    79
+##  9 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          2003     1
+## 10 Albania Sharks, rays, chima~ Squatinidae       10903XXXXX          2004     4
+## # ... with 376,761 more rows
 ```
 
 5. Based on the asfis_species_number, how many distinct fish species were caught as part of these data?
@@ -534,6 +534,10 @@ fisheries_tidy %>%
 ##                   <int>
 ## 1                  1551
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 6. Which country had the largest overall catch in the year 2000? Answer: China
 
@@ -558,8 +562,14 @@ fisheries_tidy %>%
 ##  8 United States of America  2438  2000
 ##  9 China                     1234  2000
 ## 10 Philippines                999  2000
-## # … with 8,783 more rows
+## # ... with 8,783 more rows
 ```
+</div>
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000? Answer: Morocco
 
@@ -569,10 +579,6 @@ fisheries_tidy %>%
   group_by(country) %>% 
   summarize(tot_catch_1990_to_2000 = sum(catch, between(year, 1990, 2000), na.rm = TRUE)) %>% 
   arrange(desc(tot_catch_1990_to_2000))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -589,8 +595,14 @@ fisheries_tidy %>%
 ##  8 Italy                                    518
 ##  9 Denmark                                  488
 ## 10 Serbia and Montenegro                    487
-## # … with 27 more rows
+## # ... with 27 more rows
 ```
+</div>
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 8. Which five countries caught the most cephalopods between 2008-2012? Answer: India, China, Spain, Algeria, and France
 
@@ -600,10 +612,6 @@ fisheries_tidy %>%
   group_by(country) %>% 
   summarize(sum_ceph_2008_to_2012 = sum(catch, between(year, 2008, 2012), na.rm = TRUE)) %>% 
   arrange(desc(sum_ceph_2008_to_2012))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -627,6 +635,12 @@ fisheries_tidy %>%
 ## 15 Viet Nam                                     5
 ## 16 Israel                                       1
 ```
+</div>
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species) Answer: Theragra chalcograma
 
@@ -636,10 +650,6 @@ fisheries_tidy %>%
   group_by(asfis_species_name) %>% 
   summarize(tot_catch_2008_to_2012 = sum(catch, between(year, 2008, 2012))) %>% 
   arrange(desc(tot_catch_2008_to_2012))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -656,8 +666,9 @@ fisheries_tidy %>%
 ##  8 Squillidae                              2894
 ##  9 Trachurus japonicus                     2730
 ## 10 Ammodytes personatus                    2630
-## # … with 1,461 more rows
+## # ... with 1,461 more rows
 ```
+</div>
 
 10. Use the data to do at least one analysis of your choice.
 I want to know which species was caught the most in the United States in 2010. Answer: pink salmon
@@ -685,7 +696,7 @@ fisheries_tidy %>%
 ##  8 Placopecten magellanicus American sea scallop             270
 ##  9 Limanda aspera           Yellowfin sole                   246
 ## 10 Arctica islandica        Ocean quahog                     224
-## # … with 436 more rows
+## # ... with 436 more rows
 ```
 
 ## Push your final code to GitHub!
