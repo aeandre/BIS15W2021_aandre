@@ -144,15 +144,6 @@ far_from_village <- gabon %>%
   summarize(across(contains("ra_"), mean))
 far_from_village
 ```
-Bonus!
-
-Raw numbers for far and near:
-```{r}
-#gabon %>% 
-  #filter(distance<5 | distance > 20) %>% 
-  #select(distance, ra_apes, ra_birds, ra_elephant, ra_monkeys, ra_rodent, ra_ungulate) %>% 
- # arrange(desc(distance))
-```
 
 **12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**
 My question: Which type of land use correlates with the greatest average relative abundance of the groups of animals?
