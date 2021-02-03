@@ -2,10 +2,11 @@
 title: "Tidyr 2: `pivot_wider()`"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
+    keep_md: yes
   pdf_document:
     toc: yes
 ---
@@ -38,6 +39,10 @@ Last time we learned the fundamentals of tidy data and used the `pivot_longer()`
 library("tidyverse")
 ```
 
+```{r}
+library(here)
+```
+
 ## `pivot_longer()`
 Recall that we use `pivot_longer()` when our column names actually represent variables. A classic example would be that the column names represent observations of a variable.
 ```{r}
@@ -56,19 +61,27 @@ expenditures
 
 ## Practice
 1. Are these data tidy? Please use `pivot_longer()` to tidy the data.
-```{r}
 
+No. The column names are dates, which are data. 
+```{r}
+expenditures_tidy <- 
+  expenditures %>% 
+  pivot_longer(-expenditure, 
+               names_to = "year",
+               values_to = "bn_dollars")
 ```
 
 2. Restrict the data to medical and health expenditures only. Sort in ascending order.
 ```{r}
-
+expenditures_tidy %>% 
+  filter(expenditure == "Medical and Health") %>% 
+  arrange(bn_dollars)
 ```
 
 ## `separate()`
 In this new heart rate example, we have the sex of each patient included with their name. Are these data tidy? No, there is more than one value per cell in the patient column and the columns a, b, c, d once again represent values.
 ```{r}
-heartrate2 <- readr::read_csv("data/heartrate2.csv")
+heartrate2 <- read_csv(here("lab8", "data", "heartrate2.csv"))
 heartrate2
 ```
 
@@ -81,12 +94,18 @@ heartrate2 %>%
 ## Practice
 1. Re-examine `heartrate2`. Use `separate()` for the sexes, `pivot_longer()` to tidy, and `arrange()` to organize by patient and drug. Store this as a new object `heartrate3`.  
 ```{r}
-
+heartrate3 <-
+  heartrate2 %>% 
+  separate(patient, into= c("patient", "sex"), sep = "_") %>% 
+  pivot_longer(-c(patient, sex),
+               names_to = "drug",
+               values_to = "heartrate")
 ```
 
 2. `unite()` is the opposite of separate(). Its syntax is straightforward. You only need to give a new column name and then list the columns to combine with a separation character.  Give it a try below by recombining patient and sex from `heartrate3`.  
 ```{r}
-
+heartrate3 %>% 
+  unite(patient_sex, "patient", "sex")
 ```
 
 ## `pivot_wider()`
@@ -98,7 +117,7 @@ Rules:
 + `values_from` - Cell values will be taken from the `values_from` column  
 
 ```{r}
-tb_data <- read_csv("data/tb_data.csv")
+tb_data <- read_csv(here("lab8", "data", "tb_data.csv"))
 tb_data
 ```
 
@@ -112,7 +131,7 @@ tb_data %>%
 ## Practice
 1. Load the `gene_exp.csv` data as a new object `gene_exp`. Are these data tidy? Use `pivot_wider()` to tidy the data.
 ```{r}
-gene_exp <- readr::read_csv("data/gene_exp.csv")
+gene_exp<- read_csv(here("lab8", "data", "gene_exp.csv"))
 gene_exp
 ```
 
@@ -125,7 +144,7 @@ gene_exp %>%
 ## `pivot_wider()` with multiple variables  
 What happens when we want to use `pivot_wider()` with multiple columns?
 ```{r}
-edu_level <- readr::read_csv("data/education_level.csv")
+edu_level <- read_csv(here("lab8", "data", "education_level.csv"))
 edu_level
 ```
 
@@ -141,15 +160,27 @@ For the last practice example, I will use data from the awesome [R Ladies Sydney
 
 1. Load the beachbugs data and have a look.
 ```{r}
-
+beachbugs <- read_csv(here("lab8", "data", "beachbugs_long.csv"))
+beachbugs
 ```
 2. Use `pivot_wider` to transform the data into wide format.
 ```{r}
-
+beachbugs_wide <-
+  beachbugs %>% 
+  pivot_wider(names_from = (site), 
+              values_from = (buglevels))
+beachbugs_wide
 ```
+
+
 3. Now, use `pivot_longer` to transform them back to long!
 ```{r}
-
+beachbugs_long <-
+  beachbugs_wide %>% 
+  pivot_longer(-year, 
+               names_to = "site",  
+               values_to = "buglevels")
+beachbugs_long
 ```
 
 ## Wrap-up  
