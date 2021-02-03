@@ -3,9 +3,9 @@ title: "Lab 8 Homework"
 author: "Allison Andre"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -92,18 +92,50 @@ sydneybeaches_long2
 ```
 
 6. We haven't dealt much with dates yet, but separate the date into columns day, month, and year. Do this on the `sydneybeaches_long` data.
+```{r}
+sydneybeaches_long %>% 
+  separate(date, into = c("day", "month", "year"), sep = "/")
+```
 
 
 7. What is the average `enterococci_cfu_100ml` by year for each beach. Think about which data you will use- long or wide.
 
+```{r}
+mean_enterococci_long <-
+  sydneybeaches_long %>% 
+  separate(date, into = c("day", "month", "year"), sep = "/") %>% 
+  group_by(site, year) %>% 
+  summarize(mean_enterococci_cfu_100mL = mean(enterococci_cfu_100ml, na.rm = T)) %>% 
+  arrange(desc(mean_enterococci_cfu_100mL))
+mean_enterococci_long
+```
+
 
 8. Make the output from question 7 easier to read by pivoting it to wide format.
+```{r}
+mean_enterococci_wide <-
+  mean_enterococci_long %>% 
+  pivot_wider(names_from = (year), 
+              values_from = (mean_enterococci_cfu_100mL))
+mean_enterococci_wide
+```
 
 
 9. What was the most polluted beach in 2018?
+South Maroubra Rockpool
+```{r}
+mean_enterococci_long %>% 
+  filter(year == "2018")
+```
 
 
 10. Perform one analysis of your choice on the data.
+I want to find the same result as #9, using the wide format data
+```{r}
+mean_enterococci_wide %>% 
+  select("2018", site) %>%
+  arrange(desc(.))
+```
 
 
 ## Push your final code to GitHub!
