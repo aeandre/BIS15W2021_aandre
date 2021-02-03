@@ -1,7 +1,7 @@
 ---
 title: "Lab 7 Homework"
 author: "ALlison Andre"
-date: "2021-02-01"
+date: "2021-02-02"
 output:
   html_document: 
     theme: spacelab
@@ -32,13 +32,13 @@ database to perform comparative analyses with birds, mammals, and reptiles.” _
 doi: 10.1890/15-0846.1 (URL: https://doi.org/10.1890/15-0846.1).
 
 ```r
-setwd("~/Desktop/BIS 15L/lab7/data")
-amniota <- readr:: read_csv("amniota.csv")
+# setwd("~/Desktop/BIS 15L/lab7/data")
+amniota <- readr:: read_csv("data/amniota.csv")
 ```
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   class = col_character(),
@@ -48,7 +48,7 @@ amniota <- readr:: read_csv("amniota.csv")
 ##   species = col_character(),
 ##   common_name = col_character()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 `amphibio` data:  
@@ -57,13 +57,13 @@ for amphibian ecological traits.” _Scientific Data_, *4*, 170123. doi: 10.1038
 https://doi.org/10.1038/sdata.2017.123).
 
 ```r
-setwd("~/Desktop/BIS 15L/lab7/data")
-amphibio <- readr:: read_csv("amphibio.csv")
+#setwd("~/Desktop/BIS 15L/lab7/data")
+amphibio <- readr:: read_csv("data/amphibio.csv")
 ```
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   id = col_character(),
@@ -74,18 +74,18 @@ amphibio <- readr:: read_csv("amphibio.csv")
 ##   Seeds = col_logical(),
 ##   OBS = col_logical()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```
 ## Warning: 125 parsing failures.
-##  row col           expected                                                           actual           file
-## 1410 OBS 1/0/T/F/TRUE/FALSE Identified as P. appendiculata in Boquimpani-Freitas et al. 2002 'amphibio.csv'
-## 1416 OBS 1/0/T/F/TRUE/FALSE Identified as T. miliaris in Giaretta and Facure 2004            'amphibio.csv'
-## 1447 OBS 1/0/T/F/TRUE/FALSE Considered endangered by Soto-Azat et al. 2013                   'amphibio.csv'
-## 1448 OBS 1/0/T/F/TRUE/FALSE Considered extinct by Soto-Azat et al. 2013                      'amphibio.csv'
-## 1471 OBS 1/0/T/F/TRUE/FALSE nomem dubitum                                                    'amphibio.csv'
-## .... ... .................. ................................................................ ..............
+##  row col           expected                                                           actual                file
+## 1410 OBS 1/0/T/F/TRUE/FALSE Identified as P. appendiculata in Boquimpani-Freitas et al. 2002 'data/amphibio.csv'
+## 1416 OBS 1/0/T/F/TRUE/FALSE Identified as T. miliaris in Giaretta and Facure 2004            'data/amphibio.csv'
+## 1447 OBS 1/0/T/F/TRUE/FALSE Considered endangered by Soto-Azat et al. 2013                   'data/amphibio.csv'
+## 1448 OBS 1/0/T/F/TRUE/FALSE Considered extinct by Soto-Azat et al. 2013                      'data/amphibio.csv'
+## 1471 OBS 1/0/T/F/TRUE/FALSE nomem dubitum                                                    'data/amphibio.csv'
+## .... ... .................. ................................................................ ...................
 ## See problems(...) for more details.
 ```
 
@@ -298,7 +298,7 @@ naniar::miss_var_summary(amniota_na)
 ##  8 egg_length_mm                   20702     97.1
 ##  9 weaning_weight_g                20258     95.0
 ## 10 female_svl_cm                   20242     94.9
-## # … with 26 more rows
+## # ... with 26 more rows
 ```
 
 **7. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for the `amphibio` data.**
@@ -321,7 +321,7 @@ naniar::miss_var_summary(amphibio)
 ##  8 Wet_cold   6625     97.8
 ##  9 Crepu      6608     97.5
 ## 10 Dry_warm   6572     97.0
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 **8. For the `amniota` data, calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NA's are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NA's?**  
@@ -371,13 +371,13 @@ amphibio %>%
 
 
 ```r
-setwd("~/Desktop/BIS 15L/lab7/data")
-amniota_reload <- readr:: read_csv("amniota.csv", na = c("NA","-999")) #"< 0"))
+#setwd("~/Desktop/BIS 15L/lab7/data")
+amniota_reload <- readr:: read_csv("data/amniota.csv", na = c("NA","-999")) #"< 0"))
 ```
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   class = col_character(),
@@ -397,18 +397,18 @@ amniota_reload <- readr:: read_csv("amniota.csv", na = c("NA","-999")) #"< 0"))
 ##   female_body_mass_at_maturity_g = col_logical(),
 ##   no_sex_svl_cm = col_logical()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```
 ## Warning: 13577 parsing failures.
-##  row                      col           expected actual          file
-## 9803 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'amniota.csv'
-## 9804 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'amniota.csv'
-## 9805 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'amniota.csv'
-## 9806 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'amniota.csv'
-## 9807 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'amniota.csv'
-## .... ........................ .................. ...... .............
+##  row                      col           expected actual               file
+## 9803 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'data/amniota.csv'
+## 9804 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'data/amniota.csv'
+## 9805 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'data/amniota.csv'
+## 9806 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'data/amniota.csv'
+## 9807 birth_or_hatching_svl_cm 1/0/T/F/TRUE/FALSE    4.7 'data/amniota.csv'
+## .... ........................ .................. ...... ..................
 ## See problems(...) for more details.
 ```
 
@@ -418,19 +418,19 @@ amniota_reload
 
 ```
 ## # A tibble: 21,322 x 36
-##    class order family genus species subspecies common_name female_maturity…
+##    class order family genus species subspecies common_name female_maturity~
 ##    <chr> <chr> <chr>  <chr> <chr>   <lgl>      <chr>                  <dbl>
-##  1 Aves  Acci… Accip… Acci… albogu… NA         Pied Gosha…              NA 
-##  2 Aves  Acci… Accip… Acci… badius  NA         Shikra                  363.
-##  3 Aves  Acci… Accip… Acci… bicolor NA         Bicolored …              NA 
-##  4 Aves  Acci… Accip… Acci… brachy… NA         New Britai…              NA 
-##  5 Aves  Acci… Accip… Acci… brevip… NA         Levant Spa…             363.
-##  6 Aves  Acci… Accip… Acci… castan… NA         Chestnut-f…              NA 
-##  7 Aves  Acci… Accip… Acci… chilen… NA         Chilean Ha…              NA 
-##  8 Aves  Acci… Accip… Acci… chiono… NA         White-brea…             548.
-##  9 Aves  Acci… Accip… Acci… cirroc… NA         Collared S…              NA 
-## 10 Aves  Acci… Accip… Acci… cooper… NA         Cooper's H…             730 
-## # … with 21,312 more rows, and 28 more variables:
+##  1 Aves  Acci~ Accip~ Acci~ albogu~ NA         Pied Gosha~              NA 
+##  2 Aves  Acci~ Accip~ Acci~ badius  NA         Shikra                  363.
+##  3 Aves  Acci~ Accip~ Acci~ bicolor NA         Bicolored ~              NA 
+##  4 Aves  Acci~ Accip~ Acci~ brachy~ NA         New Britai~              NA 
+##  5 Aves  Acci~ Accip~ Acci~ brevip~ NA         Levant Spa~             363.
+##  6 Aves  Acci~ Accip~ Acci~ castan~ NA         Chestnut-f~              NA 
+##  7 Aves  Acci~ Accip~ Acci~ chilen~ NA         Chilean Ha~              NA 
+##  8 Aves  Acci~ Accip~ Acci~ chiono~ NA         White-brea~             548.
+##  9 Aves  Acci~ Accip~ Acci~ cirroc~ NA         Collared S~              NA 
+## 10 Aves  Acci~ Accip~ Acci~ cooper~ NA         Cooper's H~             730 
+## # ... with 21,312 more rows, and 28 more variables:
 ## #   litter_or_clutch_size_n <dbl>, litters_or_clutches_per_y <dbl>,
 ## #   adult_body_mass_g <dbl>, maximum_longevity_y <dbl>, gestation_d <lgl>,
 ## #   weaning_d <lgl>, birth_or_hatching_weight_g <dbl>, weaning_weight_g <lgl>,
