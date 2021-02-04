@@ -32,8 +32,7 @@ Myhrvold N, Baldridge E, Chan B, Sivam D, Freeman DL, Ernest SKM (2015). “An a
 database to perform comparative analyses with birds, mammals, and reptiles.” _Ecology_, *96*, 3109.
 doi: 10.1890/15-0846.1 (URL: https://doi.org/10.1890/15-0846.1).
 ```{r}
-# setwd("~/Desktop/BIS 15L/lab7/data")
-amniota <- readr:: read_csv("data/amniota.csv")
+amniota <- read_csv(here("lab7", "data", "amniota.csv"))
 ```
 
 `amphibio` data:  
@@ -41,8 +40,7 @@ Oliveira BF, São-Pedro VA, Santos-Barrera G, Penone C, Costa GC (2017). “Amph
 for amphibian ecological traits.” _Scientific Data_, *4*, 170123. doi: 10.1038/sdata.2017.123 (URL:
 https://doi.org/10.1038/sdata.2017.123).
 ```{r}
-#setwd("~/Desktop/BIS 15L/lab7/data")
-amphibio <- readr:: read_csv("data/amphibio.csv")
+amphibio <- read_csv(here("lab7", "data", "amphibio.csv"))
 ```
 
 ## Questions  
@@ -114,8 +112,7 @@ amphibio %>%
 **10. Now that we know how NA's are represented in the `amniota` data, how would you load the data such that the values which represent NA's are automatically converted?**
 
 ```{r}
-#setwd("~/Desktop/BIS 15L/lab7/data")
-amniota_reload <- readr:: read_csv("data/amniota.csv", na = c("NA","-999")) #"< 0"))
+amniota_reload <- read_csv(here("lab7", "data", "amniota.csv"), na = c("NA","-999" "< 0"))
 ```
 ```{r}
 amniota_reload
