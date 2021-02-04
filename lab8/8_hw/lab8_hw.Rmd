@@ -105,8 +105,7 @@ mean_enterococci_long <-
   sydneybeaches_long %>% 
   separate(date, into = c("day", "month", "year"), sep = "/") %>% 
   group_by(site, year) %>% 
-  summarize(mean_enterococci_cfu_100mL = mean(enterococci_cfu_100ml, na.rm = T)) %>% 
-  arrange(desc(mean_enterococci_cfu_100mL))
+  summarize(mean_enterococci_cfu_100mL = mean(enterococci_cfu_100ml, na.rm = T))
 mean_enterococci_long
 ```
 
@@ -125,7 +124,8 @@ mean_enterococci_wide
 South Maroubra Rockpool
 ```{r}
 mean_enterococci_long %>% 
-  filter(year == "2018")
+  filter(year == "2018") %>% 
+  arrange(desc(mean_enterococci_cfu_100mL))
 ```
 
 
