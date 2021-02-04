@@ -1,7 +1,7 @@
 ---
 title: "Lab 8 Homework"
 author: "Allison Andre"
-date: "2021-02-02"
+date: "2021-02-03"
 output:
   html_document: 
     theme: spacelab
@@ -313,8 +313,7 @@ mean_enterococci_long <-
   sydneybeaches_long %>% 
   separate(date, into = c("day", "month", "year"), sep = "/") %>% 
   group_by(site, year) %>% 
-  summarize(mean_enterococci_cfu_100mL = mean(enterococci_cfu_100ml, na.rm = T)) %>% 
-  arrange(desc(mean_enterococci_cfu_100mL))
+  summarize(mean_enterococci_cfu_100mL = mean(enterococci_cfu_100ml, na.rm = T))
 ```
 
 ```
@@ -328,18 +327,18 @@ mean_enterococci_long
 ```
 ## # A tibble: 66 x 3
 ## # Groups:   site [11]
-##    site                    year  mean_enterococci_cfu_100mL
-##    <chr>                   <chr>                      <dbl>
-##  1 Little Bay Beach        2013                       122. 
-##  2 South Maroubra Rockpool 2018                       112. 
-##  3 Malabar Beach           2013                       101. 
-##  4 South Maroubra Rockpool 2013                        96.4
-##  5 Malabar Beach           2016                        91.0
-##  6 Malabar Beach           2015                        66.9
-##  7 Bronte Beach            2016                        61.3
-##  8 Coogee Beach            2016                        59.5
-##  9 South Maroubra Rockpool 2016                        59.3
-## 10 Little Bay Beach        2018                        59.1
+##    site         year  mean_enterococci_cfu_100mL
+##    <chr>        <chr>                      <dbl>
+##  1 Bondi Beach  2013                        32.2
+##  2 Bondi Beach  2014                        11.1
+##  3 Bondi Beach  2015                        14.3
+##  4 Bondi Beach  2016                        19.4
+##  5 Bondi Beach  2017                        13.2
+##  6 Bondi Beach  2018                        22.9
+##  7 Bronte Beach 2013                        26.8
+##  8 Bronte Beach 2014                        17.5
+##  9 Bronte Beach 2015                        23.6
+## 10 Bronte Beach 2016                        61.3
 ## # … with 56 more rows
 ```
 
@@ -357,19 +356,19 @@ mean_enterococci_wide
 ```
 ## # A tibble: 11 x 7
 ## # Groups:   site [11]
-##    site                    `2013` `2018` `2016` `2015` `2014` `2017`
+##    site                    `2013` `2014` `2015` `2016` `2017` `2018`
 ##    <chr>                    <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-##  1 Little Bay Beach        122.    59.1    31.2  25.5   19.5   18.2 
-##  2 South Maroubra Rockpool  96.4  112.     59.3  47.3   40.6   46.9 
-##  3 Malabar Beach           101.    38.0    91.0  66.9   54.5   49.8 
-##  4 Bronte Beach             26.8   43.4    61.3  23.6   17.5   16.8 
-##  5 Coogee Beach             39.7   21.6    59.5  40.3   52.6   20.7 
-##  6 Tamarama Beach           29.7   15.5    50.3  57.0   39.6   20.4 
-##  7 Maroubra Beach           47.1    9.21   26.6  14.5    9.23  11.6 
-##  8 South Maroubra Beach     39.3   12.5    10.7   8.25  14.9    8.26
-##  9 Gordons Bay (East)       24.8   17.6    39.0  36.2   16.7   13.7 
-## 10 Bondi Beach              32.2   22.9    19.4  14.3   11.1   13.2 
-## 11 Clovelly Beach            9.28  10.6    11.3   8.82  13.8    7.93
+##  1 Bondi Beach              32.2   11.1   14.3    19.4  13.2   22.9 
+##  2 Bronte Beach             26.8   17.5   23.6    61.3  16.8   43.4 
+##  3 Clovelly Beach            9.28  13.8    8.82   11.3   7.93  10.6 
+##  4 Coogee Beach             39.7   52.6   40.3    59.5  20.7   21.6 
+##  5 Gordons Bay (East)       24.8   16.7   36.2    39.0  13.7   17.6 
+##  6 Little Bay Beach        122.    19.5   25.5    31.2  18.2   59.1 
+##  7 Malabar Beach           101.    54.5   66.9    91.0  49.8   38.0 
+##  8 Maroubra Beach           47.1    9.23  14.5    26.6  11.6    9.21
+##  9 South Maroubra Beach     39.3   14.9    8.25   10.7   8.26  12.5 
+## 10 South Maroubra Rockpool  96.4   40.6   47.3    59.3  46.9  112.  
+## 11 Tamarama Beach           29.7   39.6   57.0    50.3  20.4   15.5
 ```
 
 
@@ -378,7 +377,8 @@ South Maroubra Rockpool
 
 ```r
 mean_enterococci_long %>% 
-  filter(year == "2018")
+  filter(year == "2018") %>% 
+  arrange(desc(mean_enterococci_cfu_100mL))
 ```
 
 ```
@@ -426,7 +426,6 @@ mean_enterococci_wide %>%
 ## 10  10.6  Clovelly Beach         
 ## 11   9.21 Maroubra Beach
 ```
-
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
