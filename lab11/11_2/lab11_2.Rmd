@@ -124,6 +124,9 @@ p+scale_fill_brewer(palette = "Paired")+
        y= "n",
        fill= "Trophic Guild")
 ```
+```{r}
+?paletteer
+```
 
 ## Manually Setting Colors
 You can also use `paleteer` to build a custom palette for consistency. To access the `paleteer` collection, I add it to a new object.
@@ -156,20 +159,37 @@ There are many options for adjusting the x and y axes. For details, look over ex
 ```{r}
 homerange %>% 
   ggplot(aes(x = log10.mass, y = log10.hra, color = locomotion)) +
-  geom_point() +
+  geom_point(na.rm = T) +
   xlim(0, 4) +
   ylim(1, 6)
 ```
 
 ## Practice
 1. Revisit the relationship between mass and homerange using a scatterplot, but color the points by taxonomic class using a custom color theme.
-```{r}
 
+```{r}
+my_palette_2 <- paletteer_d("khroma::vibrant")
+```
+
+```{r}
+homerange %>% 
+  ggplot(aes(x = log10.mass, y = log10.hra, color = locomotion)) +
+  scale_colour_manual(values = my_palette_2) +
+  geom_point(na.rm = T) +
+  xlim(0, 4) +
+  ylim(1, 6)
 ```
 
 2. Build bar plots that show the representation by taxonomic class with carnivores and herbivores. Try using a color theme that matches your scatterplot to keep everything consistent.
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = class, fill = trophic.guild)) +
+  geom_bar(position = "dodge") + 
+  scale_fill_manual(values = my_palette_2) +
+  theme(legend.position = "bottom") +
+  labs(title = "Observations by Class in Homerange Data",
+       x = "Class",
+       y= "n")
 ```
 
 ## Faceting: `facet_wrap()`

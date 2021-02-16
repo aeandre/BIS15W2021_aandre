@@ -108,7 +108,7 @@ deserts %>%
   filter(!is.na(weight)) %>% 
   ggplot(aes(x = species, y = weight)) +
   geom_boxplot() +
-  geom_point(size = 0.5)+
+  geom_point(size = 0.25)+
   coord_flip() +
   deserts %>% 
   labs(title = "Weight Ranges by Species",
