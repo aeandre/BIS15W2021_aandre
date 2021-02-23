@@ -33,7 +33,7 @@ library(janitor)
 library(lubridate)
 ```
 
-Now we can list all of the files in a directory. This isvery helpful when you are working with multiple files at once.
+Now we can list all of the files in a directory. This is very helpful when you are working with multiple files at once.
 ```{r}
 files <- list.files(path = "data/spiders", pattern = ".csv")
 files
@@ -45,7 +45,7 @@ files <- list.files(path = "data/spiders", pattern = ".csv", full.names = TRUE)
 files
 ```
 
-Now we want to read each of these files into R without having to do them one at a time because there are quite a few. There are several ways to do this, but a quick and straightforward way is to import them as a list. A list in R is an object which can store multiple other objects of the same or differing types. Lists are common in R so it's useful to be comfortable with them. Let's import our .csv files into a list. The `lapply()` function is a part of the `apply` family of functions. It will iterate over elements of an object, apply a function we specify, and return a list. We have a character vector of file paths, so we want to iterate over all the path names and apply `read_csv()`.  
+Now we want to read each of these files into R without having to do them one at a time because there are quite a few. There are several ways to do this, but a quick and straightforward way is to import them as a list. A list in R is an object which can store multiple other objects of the same or differing types. Lists are common in R so it's useful to be comfortable with them. Let's import our .csv files into a list. The `lapply()` (list apply) function is a part of the `apply` family of functions. It will iterate over elements of an object, apply a function we specify, and return a list. We have a character vector of file paths, so we want to iterate over all the path names and apply `read_csv()`.  
 
 ```{r, message = FALSE}
 spider_list <- lapply(files, read_csv)
@@ -60,7 +60,8 @@ class(spider_list[[3]])
 ## Practice
 1. What are the names of our list elements?
 ```{r}
-
+names(spider_list[[3]])
+names(spider_list[[1]])
 ```
 
 ## Naming List Elements
@@ -207,23 +208,23 @@ dateformat5 <- "20200922 170000"
 ## Practice 
 1. Convert each of the examples above using lubridate.
 ```{r}
-
+ymd(dateformat1)
 ```
 
 ```{r}
-
+mdy(dateformat2)
 ```
 
 ```{r}
-
+dmy(dateformat3)
 ```
 
 ```{r}
-
+mdy_hms(dateformat4)
 ```
 
 ```{r}
-
+ymd_hms(dateformat5)
 ```
 
 Have a look at these options.
@@ -248,13 +249,13 @@ It will be very helpful if you can install the following packages before the nex
 `devtools` and `ggmap`
 ```{r}
 #install.packages("devtools")
-#library(devtools)
-#devtools::install_github("dkahle/ggmap")
+library(devtools)
+devtools::install_github("dkahle/ggmap")
 ```
 
 `rgeos`, `rgdal`, and `albersusa`
 ```{r, message = FALSE}
-#install.packages("albersusa")
+install.packages("albersusa")
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
