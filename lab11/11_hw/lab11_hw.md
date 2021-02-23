@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 Homework"
 author: "Allison Andre"
-date: "2021-02-15"
+date: "2021-02-18"
 output:
   html_document: 
     theme: spacelab
@@ -49,12 +49,12 @@ glimpse(gapminder)
 ```
 ## Rows: 1,704
 ## Columns: 6
-## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghani…
-## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia,…
-## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997,…
-## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.…
-## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 1…
-## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134,…
+## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...
+## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...
+## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...
+## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...
+## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...
+## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...
 ```
 
 ```r
@@ -102,20 +102,13 @@ naniar::miss_var_summary(gapminder)
 gapminder2 <- gapminder %>% 
   group_by(year) %>% 
   summarize(mean_life_expectancy = mean(lifeExp))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 gapminder2
 ```
 
 ```
 ## # A tibble: 12 x 2
 ##     year mean_life_expectancy
-##    <int>                <dbl>
+##  * <int>                <dbl>
 ##  1  1952                 49.1
 ##  2  1957                 51.5
 ##  3  1962                 53.6
@@ -178,7 +171,7 @@ gapminder_3 <- gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent', 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent', 'year'. You can override using the `.groups` argument.
 ```
 
 ```r
@@ -200,7 +193,7 @@ gapminder_3
 ##  8 Africa     1952    35.5          30        52.7         39.1
 ##  9 Africa     1952    38.1          30        52.7         39.1
 ## 10 Africa     1952    40.7          30        52.7         39.1
-## # … with 1,694 more rows
+## # ... with 1,694 more rows
 ```
 
 ```r
@@ -304,7 +297,7 @@ gapminder_2007
 ##  8 Bahrain         708573        29796.
 ##  9 Bangladesh   150448339         1391.
 ## 10 Belgium       10392226        33693.
-## # … with 132 more rows
+## # ... with 132 more rows
 ```
 
 
@@ -331,7 +324,7 @@ gapminder_1952
 ##  8 Bahrain       120447          9867.
 ##  9 Bangladesh  46886859           684.
 ## 10 Belgium      8730405          8343.
-## # … with 132 more rows
+## # ... with 132 more rows
 ```
 
 
@@ -369,7 +362,7 @@ gapminder_growth2
 ##  8 Nigeria        101912068       937.
 ##  9 Mexico          78556574      8499.
 ## 10 Philippines     68638596      1918.
-## # … with 132 more rows
+## # ... with 132 more rows
 ```
 
 **8. Use your results from the question above to plot population growth for the top five countries since 1952.**
