@@ -181,15 +181,6 @@ gapminder_1952 <-
 gapminder_1952
 ```
 
-```{r}
-gapminder_growth <- data_frame(gapminder_1952, gapminder_2007$pop_2007, gapminder_2007$gdpPercap2007)
-gapminder_growth2 <- gapminder_growth %>% 
-  rename(pop_2007 = "gapminder_2007$pop_2007", gdpPercap2007 = "gapminder_2007$gdpPercap2007") %>% 
-  mutate(pop_growth = (pop_2007- pop_1952), gdp_growth = (gdpPercap2007 - gdpPercap_1952)) %>% 
-  select(country, pop_growth, gdp_growth) %>% 
-  arrange(desc(pop_growth))
-gapminder_growth2
-```
 
 **8. Use your results from the question above to plot population growth for the top five countries since 1952.**
 ```{r}
