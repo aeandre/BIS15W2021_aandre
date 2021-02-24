@@ -31,6 +31,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(remotes)
 ```
 
 Now we can list all of the files in a directory. This is very helpful when you are working with multiple files at once.
@@ -255,7 +256,7 @@ devtools::install_github("dkahle/ggmap")
 
 `rgeos`, `rgdal`, and `albersusa`
 ```{r, message = FALSE}
-install.packages("albersusa")
+remotes::install_git("https://git.sr.ht/~hrbrmstr/albersusa%22")
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  

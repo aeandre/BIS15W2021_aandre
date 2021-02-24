@@ -31,7 +31,7 @@ If you completed part 1 of today's lab then you should have the following packag
 
 `albersusa`
 ```{r, message = FALSE}
-#install.packages("albersusa")
+devtools::install_github("hrbrmstr/albersusa")
 ```
 
 ## Load the libraries
@@ -64,7 +64,7 @@ spiders %>%
   summary()
 ```
 
-Now we set the bounding box.
+Now we set the bounding box. "f" expands the box a little bit beyond the bounds.
 ```{r}
 lat <- c(34.67, 41.80)
 long <- c(-124.1, -115.5)
@@ -73,7 +73,7 @@ bbox <- make_bbox(long, lat, f = 0.05)
 
 Let's get a base map for our bounding box area. We will use the stamen maps because they are free. There are several different map types, including: `terrain-labels`, `terrain-lines`, `toner`, `toner-2011`, `toner-background`, `toner-hybrid`, `toner-lines`, `toner-lite`, and `watercolor.`
 ```{r}
-map1 <- get_map(bbox, maptype = "terrain", source = "stamen")
+map1 <- get_map(bbox, maptype = "watercolor", source = "stamen")
 ```
 
 ```{r}
@@ -91,7 +91,9 @@ ggmap(map1) +
 ## Practice
 1. Map the spider locations with a different type of base map. Try to adjust the map using different aesthetics including `size`, `color`, and `alpha`.
 ```{r}
-
+ggmap(map1) + 
+  geom_point(data = spiders, aes(longitude, latitude), size = 2, color = "maroon", alpha = 0.7) +
+  labs(x = "Longitude", y = "Latitude", title = "Spider Locations")
 ```
 
 ```{r}
