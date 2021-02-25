@@ -256,7 +256,7 @@ devtools::install_github("dkahle/ggmap")
 
 `rgeos`, `rgdal`, and `albersusa`
 ```{r, message = FALSE}
-remotes::install_git("https://git.sr.ht/~hrbrmstr/albersusa%22")
+
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
