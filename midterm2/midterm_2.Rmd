@@ -186,6 +186,10 @@ population_growth <- population %>%
 population_growth
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 7. (4 points) Produce a plot that shows the 5 countries that have had the highest population growth over the past 100 years (1920-2020). Which countries appear to have had exponential growth?  
 Answer: India and China seem to have grown exponentially.
@@ -201,6 +205,7 @@ population_growth %>%
   theme_linedraw() +
   theme(plot.title = element_text(size = rel(1.5), hjust = 0.5))
 ```
+</div>
 
 ## Income
 The units used for income are gross domestic product per person adjusted for differences in purchasing power in international dollars.
