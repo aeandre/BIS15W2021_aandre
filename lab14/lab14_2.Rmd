@@ -71,6 +71,8 @@ Individual parts of the above plot may be obtained as follows.
 #?plotMissing
 plotMissing(sug, main="")
 plotMissing(sug, main="", reorder=1)
+#summary (sug)
+drop.nullmarkers(sug)
 #?plotMap
 plotMap(sug)
 plotMap(sug,show.marker.names=TRUE)
